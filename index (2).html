@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayush Aromatics — Redesign Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Exactly 3 colors: primary (dark taupe ink), white, gold accent —
+       plus a light beige tint used for the panel/header/footer surfaces. */
+    --primary:#4A3F30;
+    --white:#FFFFFF;
+    --gold:#B8860B;
+    --gold-deep:#8C631D; /* darker gold for legible accents on beige panels */
+    --beige-btn:#D8C7A1; /* dark beige for button surfaces */
+
+    --beige-deep:#FAF8F3; /* header / hero / footer / contact panel surface */
+    --forest-950:var(--beige-deep);
+    --forest-900:var(--beige-deep);
+    --forest-800:var(--beige-deep);
+    --paper:var(--white);
+    --paper-dim:#F5F0E4; /* warm beige tint of white, ~3% */
+    --ink:var(--primary);
+    --ink-soft:rgba(74,63,48,0.74);
+    --amber:var(--gold);
+    --amber-light:var(--gold);
+    --sage:rgba(74,63,48,0.72);
+    --line:rgba(74,63,48,0.14);
+    --line-dark:rgba(74,63,48,0.16);
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .eyebrow{
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
+  h1,h2,h3{
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-0.015em;
+  }
+  h1{font-size:clamp(2rem, 7.5vw, 2.5rem);}
+  h2{font-size:clamp(1.6rem, 6vw, 2rem);}
+  h3{font-size:1.15rem; font-weight:600;}
+  section{padding:64px 22px;}
+  .container{max-width:1080px; margin:0 auto;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(245,240,228,0.96);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-dark);
+    --amber:var(--gold-deep);
+    --amber-light:var(--gold-deep);
+  }
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px;
+    color:var(--ink);
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .brand-mark svg{width:16px; height:16px;}
+  .brand-name{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.05rem; font-weight:600; line-height:1.1;}
+  .brand-est{
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size:9.5px; letter-spacing:0.14em;
+    color:var(--sage); text-transform:uppercase;
+  }
+  .nav-toggle{
+    width:38px; height:38px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    background:none; border:1px solid var(--line-dark); border-radius:50%;
+    cursor:pointer;
+  }
+  .nav-toggle span{width:15px; height:1px; background:var(--ink); display:block; transition:all .25s ease;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .mobile-menu{
+    max-height:0; overflow:hidden;
+    background:var(--forest-900);
+    transition:max-height .35s ease;
+    --amber:var(--gold-deep);
+    --amber-light:var(--gold-deep);
+  }
+  .mobile-menu.open{max-height:420px;}
+  .mobile-menu-inner{padding:6px 20px 24px;}
+  .mobile-menu a{
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--ink); font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.15rem;
+    padding:14px 0; border-bottom:1px solid var(--line-dark);
+  }
+  .mobile-menu a span{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:11px; color:var(--sage);}
+  .menu-cta{
+    margin-top:18px; display:block; text-align:center;
+    background:var(--beige-btn); color:var(--ink);
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:14px; border-radius:var(--radius); font-weight:500;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--forest-900);
+    color:var(--ink);
+    padding:44px 22px 56px;
+    position:relative;
+    overflow:hidden;
+    --amber:var(--gold-deep);
+    --amber-light:var(--gold-deep);
+  }
+  .hero-tag{
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--sage);
+    border:1px solid var(--line-dark);
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    margin-bottom:22px;
+  }
+  .hero h1{color:var(--ink); margin-bottom:16px;}
+  .hero h1 em{color:var(--amber-light);}
+  .hero p.lede{color:var(--sage); font-size:1rem; max-width:46ch; margin-bottom:28px;}
+  .hero-actions{display:flex; flex-direction:column; gap:12px; margin-bottom:40px;}
+  .btn-primary, .btn-secondary{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    padding:15px 20px;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
+    font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    border-radius:var(--radius);
+    font-weight:500;
+  }
+  .btn-primary{background:var(--beige-btn); color:var(--ink);}
+  .btn-secondary{border:1px solid var(--line-dark); color:var(--ink);}
+
+  .bottle-wrap{
+    display:flex; justify-content:center;
+    margin:0 auto 8px;
+    max-width:200px;
+  }
+  .stat-strip{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-dark);
+    margin-top:8px;
+  }
+  .stat{padding:18px 6px 0; text-align:center;}
+  .stat .num{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.6rem; color:var(--amber-light); font-weight:600;}
+  .stat .lbl{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); margin-top:4px;}
+
+  /* ---------- Category chips ---------- */
+  .cat-scroll{
+    display:flex; gap:10px; overflow-x:auto; padding:20px 22px 6px;
+    scrollbar-width:none;
+  }
+  .cat-scroll::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:12px;
+    padding:9px 16px; border:1px solid var(--line);
+    border-radius:20px; white-space:nowrap;
+    display:flex; align-items:center; gap:8px;
+  }
+  .chip.active{background:var(--forest-900); color:var(--ink); border-color:var(--forest-900); --amber:var(--gold-deep); --amber-light:var(--gold-deep);}
+  .chip b{color:var(--amber); font-weight:500;}
+  .chip.active b{color:var(--amber-light);}
+
+  /* ---------- Product cards ---------- */
+  .product-section{padding-top:24px;}
+  .section-head{margin-bottom:32px;}
+  .product-grid{display:grid; gap:16px;}
+  .product-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    position:relative;
+  }
+  .product-card .grade{
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:10.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--amber); margin-bottom:10px; display:block;
+  }
+  .product-card h3{margin-bottom:8px;}
+  .product-card p{color:var(--ink-soft); font-size:0.92rem;}
+  .product-card .stamp{
+    position:absolute; top:18px; right:18px;
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-weight:700; font-size:14px; color:var(--sage);
+  }
+
+  /* ---------- Process (beige panel) ---------- */
+  .process{background:var(--forest-950); color:var(--ink); --amber:var(--gold-deep); --amber-light:var(--gold-deep);}
+  .process .eyebrow{color:var(--amber-light);}
+  .process .eyebrow::before{background:var(--amber-light);}
+  .process h2{color:var(--ink); margin-bottom:14px;}
+  .process > .container > p{color:var(--sage); max-width:50ch; margin-bottom:44px;}
+  .timeline{position:relative; padding-left:34px;}
+  .timeline::before{
+    content:""; position:absolute; left:11px; top:6px; bottom:6px; width:1px;
+    background:linear-gradient(var(--amber), transparent 92%);
+  }
+  .tl-step{position:relative; padding-bottom:38px;}
+  .tl-step:last-child{padding-bottom:0;}
+  .tl-dot{
+    position:absolute; left:-34px; top:2px;
+    width:23px; height:23px; border-radius:50%;
+    background:var(--forest-950); border:1px solid var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:10px; color:var(--amber-light);
+  }
+  .tl-step h3{color:var(--ink); margin-bottom:6px; font-size:1.05rem;}
+  .tl-step p{color:var(--sage); font-size:0.92rem; max-width:52ch;}
+
+  /* ---------- Certifications ---------- */
+  .certs{background:var(--paper-dim);}
+  .cert-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:32px;}
+  .cert-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:22px 14px;
+    text-align:center;
+  }
+  .cert-seal{
+    width:50px; height:50px; margin:0 auto 14px;
+    border-radius:50%;
+    border:1px solid var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-weight:700; color:var(--amber);
+    font-size:1.3rem;
+    position:relative;
+  }
+  .cert-seal::after{
+    content:""; position:absolute; inset:-5px;
+    border:1px dashed rgba(193,127,23,0.35);
+    border-radius:50%;
+  }
+  .cert-card h3{font-size:0.98rem; margin-bottom:4px;}
+  .cert-card p{font-size:0.82rem; color:var(--ink-soft);}
+
+  /* ---------- Testimonials ---------- */
+  .test-scroll{display:flex; gap:16px; overflow-x:auto; padding:8px 22px 20px; scroll-snap-type:x mandatory; scrollbar-width:none;}
+  .test-scroll::-webkit-scrollbar{display:none;}
+  .test-card{
+    flex:0 0 82%; scroll-snap-align:start;
+    background:var(--forest-900); color:var(--ink);
+    padding:26px 22px; border-radius:var(--radius);
+    --amber:var(--gold-deep); --amber-light:var(--gold-deep);
+  }
+  .test-card .quote-mark{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:2.4rem; color:var(--amber-light); line-height:1; margin-bottom:6px;}
+  .test-card p{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.05rem; margin-bottom:22px; color:var(--ink);}
+  .test-card .who b{display:block; font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-style:normal; font-size:0.92rem;}
+  .test-card .who span{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:11px; color:var(--sage);}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:20px 0; cursor:pointer;
+  }
+  .faq-q h3{font-size:1rem; font-weight:600;}
+  .faq-q .plus{
+    width:26px; height:26px; border-radius:50%; border:1px solid var(--line);
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:14px; transition:transform .25s ease;
+  }
+  .faq-item.open .plus{transform:rotate(45deg); border-color:var(--amber); color:var(--amber);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{padding-bottom:20px; color:var(--ink-soft); font-size:0.92rem; max-width:60ch;}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--forest-950); color:var(--ink); --amber:var(--gold-deep); --amber-light:var(--gold-deep);}
+  .contact h2{color:var(--ink);}
+  .contact-card{
+    background:var(--paper); border:1px solid var(--line-dark);
+    padding:26px 22px; margin-top:32px;
+  }
+  .contact-row{display:flex; justify-content:space-between; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line-dark); gap:12px;}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .k{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage);}
+  .contact-row .v{font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.05rem; text-align:right;}
+  .contact-row .v small{display:block; font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:0.78rem; color:var(--sage); margin-top:2px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--forest-950); color:var(--sage); padding:36px 22px; border-top:1px solid var(--line-dark); --amber:var(--gold-deep); --amber-light:var(--gold-deep);}
+  footer .foot-brand{color:var(--ink); font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif; font-size:1.1rem; margin-bottom:6px;}
+  footer .foot-links{display:flex; flex-wrap:wrap; gap:16px; margin:18px 0; font-size:0.85rem;}
+  footer .foot-bottom{font-size:0.78rem; padding-top:18px; border-top:1px solid var(--line-dark); font-family:'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;}
+
+  /* ---------- Desktop scale-up ---------- */
+  @media (min-width:760px){
+    section{padding:96px 40px;}
+    .hero{padding:64px 40px 80px;}
+    .hero-inner{display:grid; grid-template-columns:1.1fr 0.9fr; align-items:center; gap:40px;}
+    .hero-actions{flex-direction:row;}
+    .product-grid{grid-template-columns:repeat(3,1fr);}
+    .cert-grid{grid-template-columns:repeat(4,1fr);}
+    .test-card{flex:0 0 40%;}
+    .stat-strip{max-width:420px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z" stroke="#B8860B" stroke-width="1.4"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">Ayush Aromatics</div>
+        <div class="brand-est">Est. 2009 — Bareilly, India</div>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#products">Products <span>42+ SKUs</span></a>
+      <a href="#process">Process <span>01–05</span></a>
+      <a href="#quality">Quality <span>GMP·ISO</span></a>
+      <a href="#contact">Contact <span>UP, India</span></a>
+      <a href="#contact" class="menu-cta">Request a Quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Manufacturer &amp; Exporter · Since 2009</div>
+      <h1>Essential oils, <em>distilled</em> for global industry.</h1>
+      <p class="lede">GMP &amp; HACCP-qualified extraction of essential oils, menthol &amp; mint, carrier oils and specialty extracts — shipped to 110+ countries with full documentation on every batch.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request a Quote →</a>
+        <a href="#products" class="btn-secondary">View Product Range</a>
+      </div>
+    </div>
+    <div>
+      <div class="bottle-wrap">
+        <svg viewBox="0 0 160 260" width="100%">
+          <defs>
+            <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#CDA43A"/>
+              <stop offset="100%" stop-color="#8C6A1E"/>
+            </linearGradient>
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#6B5F4D" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#4A3F30" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+          <rect x="58" y="14" width="44" height="26" rx="3" fill="#4A3F30" stroke="#B8860B" stroke-width="1.2"/>
+          <rect x="65" y="40" width="30" height="16" fill="#4A3F30"/>
+          <path d="M50 60 Q50 56 56 56 L104 56 Q110 56 110 60 L118 100 Q124 130 124 160 L124 220 Q124 246 100 246 L60 246 Q36 246 36 220 L36 160 Q36 130 42 100 Z" fill="url(#glass)" stroke="#B8860B" stroke-width="1.2"/>
+          <path d="M40 150 Q40 128 45 105 L118 105 Q123 128 123 150 L123 220 Q123 244 100 244 L61 244 Q40 244 40 220 Z" fill="url(#liquid)" opacity="0.88"/>
+          <ellipse cx="80" cy="150" rx="42" ry="6" fill="#B8860B" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="num">110+</div><div class="lbl">Countries</div></div>
+        <div class="stat"><div class="num">42</div><div class="lbl">Essential Oils</div></div>
+        <div class="stat"><div class="num">16+</div><div class="lbl">Years Export</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cat-scroll-wrap" style="padding-top:28px;">
+  <div class="cat-scroll">
+    <div class="chip active">Mint Products <b>17</b></div>
+    <div class="chip">Aromatherapy Oils <b>21</b></div>
+    <div class="chip">Essential Oils <b>42</b></div>
+    <div class="chip">Carrier Oils <b>19</b></div>
+    <div class="chip">Spice &amp; Oleoresins <b>11</b></div>
+    <div class="chip">Pine Derivatives <b>5</b></div>
+  </div>
+</section>
+
+<section class="product-section" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">What we offer</div>
+      <h2 style="margin-top:14px;">A complete range for pharma, cosmetic &amp; food manufacturers.</h2>
+      <p style="color:var(--ink-soft); margin-top:14px; max-width:56ch;">From menthol crystals to cold-pressed carrier oils — every product ships in bulk, retail or private-label packaging, with COA and MSDS included.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <span class="grade">Menthol &amp; Mint</span>
+        <div class="stamp">01</div>
+        <h3>Mint Products</h3>
+        <p>Manufactured under GMP conditions for pharmaceutical, food and flavor applications.</p>
+      </div>
+      <div class="product-card">
+        <span class="grade">Aromatherapy Grade</span>
+        <div class="stamp">02</div>
+        <h3>Aromatherapy Oils</h3>
+        <p>Steam-distilled for wellness and personal-care formulations, batch-tested for purity.</p>
+      </div>
+      <div class="product-card">
+        <span class="grade">Cold-Pressed</span>
+        <div class="stamp">03</div>
+        <h3>Carrier &amp; Specialty Oils</h3>
+        <p>Base oils and extracts formulated to client specification for private-label lines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="container">
+    <div class="eyebrow">From sourcing to shipment</div>
+    <h2 style="margin-top:14px;">Our process, batch by batch.</h2>
+    <p>A real, ordered sequence — every batch passes through the same five stages before it reaches your dock.</p>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-dot">01</div>
+        <h3>Sourcing</h3>
+        <p>Raw botanicals procured directly from growers and trusted regional traders across India, selected at peak maturity.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">02</div>
+        <h3>Extraction &amp; Distillation</h3>
+        <p>Steam distillation and cold-press extraction in our GMP-qualified plant, using indigenously engineered machinery.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">03</div>
+        <h3>Quality Testing</h3>
+        <p>Each batch is lab-tested against pharmacopoeial standards before a Certificate of Analysis is issued.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">04</div>
+        <h3>Packaging</h3>
+        <p>Filled and sealed in bulk drums, retail bottles or private-label formats to your specification.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">05</div>
+        <h3>Shipment</h3>
+        <p>Export documentation, MSDS and logistics coordinated end-to-end for 110+ destination countries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certs" id="quality">
+  <div class="container">
+    <div class="eyebrow">Built on paper, proven in the lab</div>
+    <h2 style="margin-top:14px; color:var(--ink);">Every claim, certified.</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-seal">G</div>
+        <h3>GMP Certified</h3>
+        <p>Qualified production standards</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-seal">H</div>
+        <h3>HACCP Facility</h3>
+        <p>Hygienic, controlled processing</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-seal">I</div>
+        <h3>ISO 9001</h3>
+        <p>Quality-managed systems</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-seal">C</div>
+        <h3>COA + MSDS</h3>
+        <p>With every shipment</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--paper); padding-bottom:16px;">
+  <div class="container">
+    <div class="eyebrow">What partners say</div>
+    <h2 style="margin-top:14px; margin-bottom:6px;">Trusted across three continents.</h2>
+  </div>
+  <div class="test-scroll">
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <p>Consistent quality batch after batch — our team no longer needs to re-test every shipment.</p>
+      <div class="who"><b>Formulation Lead</b><span>Cosmetics Manufacturer, USA</span></div>
+    </div>
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <p>Their menthol and essential oil grades are dependable every time. A genuine sourcing partner.</p>
+      <div class="who"><b>Procurement Head</b><span>Fragrance House, UAE</span></div>
+    </div>
+    <div class="test-card">
+      <div class="quote-mark">"</div>
+      <p>Documentation and export handling were seamless — one less thing for our team to manage.</p>
+      <div class="who"><b>Operations Manager</b><span>Wellness Brand, South Korea</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:24px;">
+  <div class="container">
+    <div class="eyebrow">Common questions</div>
+    <h2 style="margin-top:14px; margin-bottom:24px;">Frequently asked questions.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><h3>What is the minimum order quantity for bulk essential oils?</h3><div class="plus">+</div></div>
+      <div class="faq-a"><p>MOQs vary by product — most essential oils start at 25kg for trial orders, with standard bulk shipments from 200kg upward. Contact us with your product and destination for an exact quote.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>Do you provide a COA and MSDS with each shipment?</h3><div class="plus">+</div></div>
+      <div class="faq-a"><p>Yes — every batch ships with a full Certificate of Analysis and Material Safety Data Sheet as standard, at no extra cost.</p></div>
+    </div>
+    <div class="faq-item open">
+      <div class="faq-q"><h3>Can Ayush Aromatics manufacture to a custom specification?</h3><div class="plus">+</div></div>
+      <div class="faq-a" style="max-height:200px;"><p>Yes, we formulate menthol, essential oil and carrier oil products to a client's brief for pharma, food and cosmetic applications, including private-label packaging.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><h3>Which countries does Ayush Aromatics export to?</h3><div class="plus">+</div></div>
+      <div class="faq-a"><p>We currently ship to 110+ countries across North America, Europe, the Middle East and Asia-Pacific, with established logistics partners for each region.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="eyebrow">Get in touch</div>
+    <h2 style="margin-top:14px;">Request a quote or documentation.</h2>
+    <p style="color:var(--sage); margin-top:14px; max-width:52ch;">Tell us the product, quantity and destination — we respond within one business day.</p>
+    <div class="contact-card">
+      <div class="contact-row"><div class="k">Phone</div><div class="v">+91 82670 00606<small>Mon–Sat, 10am–7pm IST</small></div></div>
+      <div class="contact-row"><div class="k">Email</div><div class="v">info@ayusharomatics.com<small>Quotes, samples &amp; bulk enquiries</small></div></div>
+      <div class="contact-row"><div class="k">Address</div><div class="v">Koharapeer, Bareilly<small>Uttar Pradesh, India</small></div></div>
+    </div>
+    <a href="#" class="btn-primary" style="margin-top:22px; text-decoration:none;">Send Enquiry →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">Ayush Aromatics</div>
+  <p style="font-size:0.85rem; max-width:40ch;">Manufacturer &amp; exporter of essential oils, menthol &amp; mint oils, carrier oils and specialty extracts since 2009.</p>
+  <div class="foot-links">
+    <a href="#products">Products</a>
+    <a href="#process">Process</a>
+    <a href="#quality">Quality</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="foot-bottom">© 2009–2026 Ayush Aromatics. All rights reserved.</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => {
+    navToggle.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }));
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
