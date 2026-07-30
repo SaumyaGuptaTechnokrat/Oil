@@ -5,21 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ayush Aromatics — Redesign Concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --forest-950:#0F1F17;
-    --forest-900:#16281F;
-    --forest-800:#1E3327;
-    --paper:#F7F3EA;
-    --paper-dim:#EFE9DB;
-    --ink:#161F19;
-    --ink-soft:#4A5750;
-    --amber:#C17F17;
-    --amber-light:#E3A94A;
-    --sage:#9DB3A0;
-    --line:rgba(22,31,25,0.12);
-    --line-dark:rgba(247,243,234,0.14);
+    /* Exactly 3 colors: primary (navy-green), white, gold accent.
+       Everything else below is a tint/opacity of these three — not a new hue. */
+    --primary:#122019;
+    --white:#FFFFFF;
+    --gold:#B8860B;
+
+    --forest-950:var(--primary);
+    --forest-900:var(--primary);
+    --forest-800:var(--primary);
+    --paper:var(--white);
+    --paper-dim:#F2F2F0; /* white tinted with primary at ~3% */
+    --ink:var(--primary);
+    --ink-soft:rgba(18,32,25,0.65);
+    --amber:var(--gold);
+    --amber-light:var(--gold);
+    --sage:rgba(255,255,255,0.68);
+    --line:rgba(18,32,25,0.14);
+    --line-dark:rgba(255,255,255,0.16);
     --radius:2px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -35,7 +41,8 @@
   img{max-width:100%; display:block;}
   a{color:inherit; text-decoration:none;}
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Inter', Arial, sans-serif;
+    font-weight:600;
     font-size:11px;
     letter-spacing:0.16em;
     text-transform:uppercase;
@@ -51,13 +58,13 @@
     display:inline-block;
   }
   h1,h2,h3{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    line-height:1.08;
-    letter-spacing:-0.01em;
+    font-family:'Inter', Arial, sans-serif;
+    font-weight:800;
+    line-height:1.12;
+    letter-spacing:-0.015em;
   }
-  h1{font-size:clamp(2.1rem, 8vw, 2.6rem);}
-  h2{font-size:clamp(1.7rem, 6.5vw, 2.15rem);}
+  h1{font-size:clamp(2rem, 7.5vw, 2.5rem);}
+  h2{font-size:clamp(1.6rem, 6vw, 2rem);}
   h3{font-size:1.15rem; font-weight:600;}
   section{padding:64px 22px;}
   .container{max-width:1080px; margin:0 auto;}
@@ -83,9 +90,9 @@
     flex-shrink:0;
   }
   .brand-mark svg{width:16px; height:16px;}
-  .brand-name{font-family:'Fraunces', serif; font-size:1.05rem; font-weight:600; line-height:1.1;}
+  .brand-name{font-family:'Inter', Arial, sans-serif; font-size:1.05rem; font-weight:600; line-height:1.1;}
   .brand-est{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Inter', Arial, sans-serif;
     font-size:9.5px; letter-spacing:0.14em;
     color:var(--sage); text-transform:uppercase;
   }
@@ -109,14 +116,14 @@
   .mobile-menu-inner{padding:6px 20px 24px;}
   .mobile-menu a{
     display:flex; justify-content:space-between; align-items:center;
-    color:var(--paper); font-family:'Fraunces', serif; font-size:1.15rem;
+    color:var(--paper); font-family:'Inter', Arial, sans-serif; font-size:1.15rem;
     padding:14px 0; border-bottom:1px solid var(--line-dark);
   }
-  .mobile-menu a span{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--sage);}
+  .mobile-menu a span{font-family:'Inter', Arial, sans-serif; font-size:11px; color:var(--sage);}
   .menu-cta{
     margin-top:18px; display:block; text-align:center;
     background:var(--amber); color:var(--forest-950);
-    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    font-family:'Inter', Arial, sans-serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
     padding:14px; border-radius:var(--radius); font-weight:500;
   }
 
@@ -129,7 +136,7 @@
     overflow:hidden;
   }
   .hero-tag{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Inter', Arial, sans-serif;
     font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--sage);
     border:1px solid var(--line-dark);
@@ -139,13 +146,13 @@
     margin-bottom:22px;
   }
   .hero h1{color:var(--paper); margin-bottom:16px;}
-  .hero h1 em{font-style:italic; color:var(--amber-light);}
+  .hero h1 em{color:var(--amber-light);}
   .hero p.lede{color:var(--sage); font-size:1rem; max-width:46ch; margin-bottom:28px;}
   .hero-actions{display:flex; flex-direction:column; gap:12px; margin-bottom:40px;}
   .btn-primary, .btn-secondary{
     display:flex; align-items:center; justify-content:center; gap:8px;
     padding:15px 20px;
-    font-family:'IBM Plex Mono', monospace;
+    font-family:'Inter', Arial, sans-serif;
     font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
     border-radius:var(--radius);
     font-weight:500;
@@ -164,8 +171,8 @@
     margin-top:8px;
   }
   .stat{padding:18px 6px 0; text-align:center;}
-  .stat .num{font-family:'Fraunces', serif; font-size:1.6rem; color:var(--amber-light); font-weight:600;}
-  .stat .lbl{font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); margin-top:4px;}
+  .stat .num{font-family:'Inter', Arial, sans-serif; font-size:1.6rem; color:var(--amber-light); font-weight:600;}
+  .stat .lbl{font-family:'Inter', Arial, sans-serif; font-size:9.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sage); margin-top:4px;}
 
   /* ---------- Category chips ---------- */
   .cat-scroll{
@@ -175,7 +182,7 @@
   .cat-scroll::-webkit-scrollbar{display:none;}
   .chip{
     flex:0 0 auto;
-    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    font-family:'Inter', Arial, sans-serif; font-size:12px;
     padding:9px 16px; border:1px solid var(--line);
     border-radius:20px; white-space:nowrap;
     display:flex; align-items:center; gap:8px;
@@ -196,7 +203,7 @@
     position:relative;
   }
   .product-card .grade{
-    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.1em;
+    font-family:'Inter', Arial, sans-serif; font-size:10.5px; letter-spacing:0.1em;
     text-transform:uppercase; color:var(--amber); margin-bottom:10px; display:block;
   }
   .product-card h3{margin-bottom:8px;}
@@ -206,7 +213,7 @@
     width:36px; height:36px; border-radius:50%;
     border:1px solid var(--line);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-style:italic; font-size:14px; color:var(--sage);
+    font-family:'Inter', Arial, sans-serif; font-weight:700; font-size:14px; color:var(--sage);
   }
 
   /* ---------- Process (dark) ---------- */
@@ -227,7 +234,7 @@
     width:23px; height:23px; border-radius:50%;
     background:var(--forest-950); border:1px solid var(--amber);
     display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--amber-light);
+    font-family:'Inter', Arial, sans-serif; font-size:10px; color:var(--amber-light);
   }
   .tl-step h3{color:var(--paper); margin-bottom:6px; font-size:1.05rem;}
   .tl-step p{color:var(--sage); font-size:0.92rem; max-width:52ch;}
@@ -246,7 +253,7 @@
     border-radius:50%;
     border:1px solid var(--amber);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-style:italic; color:var(--amber);
+    font-family:'Inter', Arial, sans-serif; font-weight:700; color:var(--amber);
     font-size:1.3rem;
     position:relative;
   }
@@ -266,10 +273,10 @@
     background:var(--forest-900); color:var(--paper);
     padding:26px 22px; border-radius:var(--radius);
   }
-  .test-card .quote-mark{font-family:'Fraunces', serif; font-size:2.4rem; color:var(--amber-light); line-height:1; margin-bottom:6px;}
-  .test-card p{font-family:'Fraunces', serif; font-style:italic; font-size:1.05rem; margin-bottom:22px; color:var(--paper);}
+  .test-card .quote-mark{font-family:'Inter', Arial, sans-serif; font-size:2.4rem; color:var(--amber-light); line-height:1; margin-bottom:6px;}
+  .test-card p{font-family:'Inter', Arial, sans-serif; font-size:1.05rem; margin-bottom:22px; color:var(--paper);}
   .test-card .who b{display:block; font-family:'Inter'; font-style:normal; font-size:0.92rem;}
-  .test-card .who span{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--sage);}
+  .test-card .who span{font-family:'Inter', Arial, sans-serif; font-size:11px; color:var(--sage);}
 
   /* ---------- FAQ ---------- */
   .faq-item{border-bottom:1px solid var(--line);}
@@ -281,7 +288,7 @@
   .faq-q .plus{
     width:26px; height:26px; border-radius:50%; border:1px solid var(--line);
     flex-shrink:0; display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace; font-size:14px; transition:transform .25s ease;
+    font-family:'Inter', Arial, sans-serif; font-size:14px; transition:transform .25s ease;
   }
   .faq-item.open .plus{transform:rotate(45deg); border-color:var(--amber); color:var(--amber);}
   .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
@@ -296,15 +303,15 @@
   }
   .contact-row{display:flex; justify-content:space-between; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line-dark); gap:12px;}
   .contact-row:last-child{border-bottom:none;}
-  .contact-row .k{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage);}
-  .contact-row .v{font-family:'Fraunces', serif; font-size:1.05rem; text-align:right;}
+  .contact-row .k{font-family:'Inter', Arial, sans-serif; font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--sage);}
+  .contact-row .v{font-family:'Inter', Arial, sans-serif; font-size:1.05rem; text-align:right;}
   .contact-row .v small{display:block; font-family:'Inter'; font-size:0.78rem; color:var(--sage); margin-top:2px;}
 
   /* ---------- Footer ---------- */
   footer{background:var(--forest-950); color:var(--sage); padding:36px 22px; border-top:1px solid var(--line-dark);}
-  footer .foot-brand{color:var(--paper); font-family:'Fraunces', serif; font-size:1.1rem; margin-bottom:6px;}
+  footer .foot-brand{color:var(--paper); font-family:'Inter', Arial, sans-serif; font-size:1.1rem; margin-bottom:6px;}
   footer .foot-links{display:flex; flex-wrap:wrap; gap:16px; margin:18px 0; font-size:0.85rem;}
-  footer .foot-bottom{font-size:0.78rem; padding-top:18px; border-top:1px solid var(--line-dark); font-family:'IBM Plex Mono', monospace;}
+  footer .foot-bottom{font-size:0.78rem; padding-top:18px; border-top:1px solid var(--line-dark); font-family:'Inter', Arial, sans-serif;}
 
   /* ---------- Desktop scale-up ---------- */
   @media (min-width:760px){
@@ -469,11 +476,6 @@
     <h2 style="margin-top:14px; color:var(--ink);">Every claim, certified.</h2>
     <div class="cert-grid">
       <div class="cert-card">
-        <div class="cert-seal">G</div>
-        <h3>GMP Certified</h3>
-        <p>Qualified production standards</p>
-      </div>
-      <div class="cert-card">
         <div class="cert-seal">H</div>
         <h3>HACCP Facility</h3>
         <p>Hygienic, controlled processing</p>
@@ -491,7 +493,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section style="background:var(--paper); padding-bottom:16px;">
   <div class="container">
     <div class="eyebrow">What partners say</div>
@@ -515,12 +517,12 @@
     </div>
   </div>
 </section>
-
+ 
 <section style="padding-top:24px;">
   <div class="container">
     <div class="eyebrow">Common questions</div>
     <h2 style="margin-top:14px; margin-bottom:24px;">Frequently asked questions.</h2>
-
+ 
     <div class="faq-item">
       <div class="faq-q"><h3>What is the minimum order quantity for bulk essential oils?</h3><div class="plus">+</div></div>
       <div class="faq-a"><p>MOQs vary by product — most essential oils start at 25kg for trial orders, with standard bulk shipments from 200kg upward. Contact us with your product and destination for an exact quote.</p></div>
@@ -539,7 +541,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="contact" id="contact">
   <div class="container">
     <div class="eyebrow">Get in touch</div>
@@ -553,7 +555,7 @@
     <a href="#" class="btn-primary" style="margin-top:22px; text-decoration:none;">Send Enquiry →</a>
   </div>
 </section>
-
+ 
 <footer>
   <div class="foot-brand">Ayush Aromatics</div>
   <p style="font-size:0.85rem; max-width:40ch;">Manufacturer &amp; exporter of essential oils, menthol &amp; mint oils, carrier oils and specialty extracts since 2009.</p>
@@ -565,7 +567,7 @@
   </div>
   <div class="foot-bottom">© 2009–2026 Ayush Aromatics. All rights reserved.</div>
 </footer>
-
+ 
 <script>
   const navToggle = document.getElementById('navToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -577,14 +579,14 @@
     navToggle.classList.remove('open');
     mobileMenu.classList.remove('open');
   }));
-
+ 
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
     });
   });
-
+  
   document.querySelectorAll('.faq-item').forEach(item => {
     const q = item.querySelector('.faq-q');
     const a = item.querySelector('.faq-a');
@@ -601,6 +603,6 @@
     });
   });
 </script>
-
+ 
 </body>
 </html>
